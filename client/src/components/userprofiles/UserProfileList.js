@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Table } from "reactstrap";
 import { Link } from "react-router-dom";
-import { getUserProfilesWithRoles } from "../../managers/userProfileManager";
+import { demoteUser, getUserProfilesWithRoles, promoteUser } from "../../managers/userProfileManager";
 
 export default function UserProfileList({ loggedInUser }) {
   const [userProfiles, setUserProfiles] = useState([]);
@@ -11,10 +11,15 @@ export default function UserProfileList({ loggedInUser }) {
   }, []);
 
   const promote = (id) => {
-    console.log(`${id} promoted!`);
+    promoteUser(id).then(() => {
+      getUserProfilesWithRoles().then(setUserProfiles);
+    });
   };
+
   const demote = (id) => {
-    console.log(`${id} demoted!`);
+    demoteUser(id).then(() => {
+      getUserProfilesWithRoles().then(setUserProfiles);
+    });
   };
 
   return (
