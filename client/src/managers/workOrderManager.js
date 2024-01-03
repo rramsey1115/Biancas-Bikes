@@ -12,4 +12,27 @@ export const createWorkOrder = (workOrder) => {
       },
       body: JSON.stringify(workOrder),
     }).then((res) => res.json);
-  };
+};
+
+export const updateWorkOrder = (workOrder) => {
+    return fetch(`${_apiUrl}/${workOrder.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(workOrder),
+    });
+};
+
+export const markWorkOrderComplete = (workOrderId) => {
+    return fetch(`${_apiUrl}/${workOrderId}/complete`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" }
+    });
+}
+
+export const deleteWorkOrderById = (workOrderId) => {
+    return fetch(`${_apiUrl}/${workOrderId}`, {
+        method: "DELETE"
+    });
+}

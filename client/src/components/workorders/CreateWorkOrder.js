@@ -21,7 +21,6 @@ export default function CreateWorkOrder({ loggedInUser }) {
     createWorkOrder(newWorkOrder).then(() => {
       navigate("/workorders");
     });
-
   };
 
   useEffect(() => {
